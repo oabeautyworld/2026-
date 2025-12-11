@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI 손금 분석기</title>
+    <title>2026 손금 신년운세</title>
     <style>
-        /* 스타일 정의 (CSS) */
+        /* --- 스타일 정의 (CSS) --- */
         body {
             margin: 0;
             padding: 0;
@@ -24,24 +24,26 @@
             box-shadow: 0 0 20px rgba(0,0,0,0.05);
             min-height: 100vh;
             position: relative;
-            overflow: hidden;
+            overflow-y: auto;
         }
 
         /* 애니메이션 */
         .fade-in { animation: fadeIn 0.5s ease-out forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .pop-in { animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+        @keyframes popIn { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
 
         /* 1. 시작 화면 */
         #start-screen { padding: 40px 20px; text-align: center; margin-top: 50px; }
         .badge { background: #e0e7ff; color: #4338ca; padding: 5px 12px; border-radius: 20px; font-size: 13px; font-weight: bold; }
-        h1 { font-size: 28px; margin: 20px 0 10px; color: #111; }
+        h1 { font-size: 28px; margin: 20px 0 10px; color: #111; line-height: 1.3; }
         .hand-icon { font-size: 100px; margin: 40px 0; animation: float 3s ease-in-out infinite; }
         @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
         
         /* 버튼 공통 */
-        .start-btn, .buy-btn, .retry-btn {
+        .btn-base {
             width: 100%;
-            padding: 15px;
+            padding: 16px;
             border-radius: 12px;
             border: none;
             font-size: 18px;
@@ -63,7 +65,7 @@
             display: flex;
             align-items: center;
             width: 100%;
-            box-sizing: border-box; /* 패딩 포함 크기 계산 */
+            box-sizing: border-box;
             background: white;
             border: 2px solid #eee;
             border-radius: 15px;
@@ -91,35 +93,62 @@
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
         /* 4. 결과 화면 */
-        #result-screen { display: none; padding: 30px 20px; }
-        .result-header { text-align: center; margin-bottom: 30px; }
-        .result-subtitle { color: #4f46e5; font-weight: bold; background: #eef2ff; padding: 5px 10px; border-radius: 20px; }
-        #result-title { font-size: 26px; margin: 15px 0; }
-        .result-content { background: #f9fafb; padding: 20px; border-radius: 15px; line-height: 1.6; color: #444; margin-bottom: 30px; }
+        #result-screen { display: none; padding: 40px 20px; background: linear-gradient(180deg, #fff 0%, #f8f9fa 100%); }
         
-        /* 광고(바이럴) 박스 - 핑크 테마 적용 */
+        .result-card {
+            background: white;
+            border: 2px solid #4f46e5;
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.15);
+            margin-bottom: 40px;
+        }
+        .result-subtitle { 
+            display: inline-block;
+            background: #eef2ff; 
+            color: #4f46e5; 
+            font-weight: bold; 
+            padding: 6px 15px; 
+            border-radius: 20px; 
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        
+        .result-visual {
+            width: 100%;
+            height: 220px;
+            background: #f0f0f0;
+            border-radius: 15px;
+            margin: 15px 0 20px;
+            overflow: hidden;
+            border: 1px solid #eee;
+        }
+        .result-visual img { width: 100%; height: 100%; object-fit: cover; }
+
+        #result-title { font-size: 26px; margin: 0 0 15px; color: #222; letter-spacing: -0.5px; word-break: keep-all; }
+        #result-desc { font-size: 16px; line-height: 1.6; color: #555; word-break: keep-all; }
+
+        /* 광고 박스 (핑크) */
         .viral-box {
-            background-color: #fdf2f8; /* 연한 핑크 배경 */
+            background-color: #fff0f6;
             border: 2px solid #fbcfe8;
             border-radius: 15px;
-            padding: 20px;
+            padding: 25px 20px;
             text-align: center;
             margin-bottom: 30px;
         }
-        .viral-box h3 { margin: 10px 0; font-size: 19px; color: #111; }
-        .product-visual { margin: 15px 0; border-radius: 10px; overflow: hidden; }
-        .product-visual img { width: 100%; border-radius: 10px; display: block; }
-        .viral-text { font-size: 14px; color: #444; margin-bottom: 20px; line-height: 1.5; }
+        .viral-box h3 { margin: 10px 0; font-size: 20px; color: #111; }
+        .viral-visual { margin: 20px 0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .viral-visual img { width: 100%; display: block; }
+        .viral-text { font-size: 15px; color: #444; margin-bottom: 20px; line-height: 1.5; word-break: keep-all; }
         
-        /* 구매 버튼 (핫핑크) */
         .buy-btn { 
             background: #ff4081; 
             color: white; 
-            font-size: 16px; 
             box-shadow: 0 4px 10px rgba(255, 64, 129, 0.3);
         }
         .buy-btn:hover { background: #e91e63; }
-        
         .retry-btn { background: white; border: 1px solid #ddd; color: #666; font-size: 14px; }
 
     </style>
@@ -130,13 +159,13 @@
         
         <section id="start-screen">
             <div class="intro-box">
-                <span class="badge">소닉플로우 AI 연구소</span>
-                <h1>✋ 2025 손금 성격설</h1>
-                <p style="color:#666; line-height: 1.5;">손바닥에 그려진 선을 보면<br>나의 숨겨진 성격과 미래가 보입니다.</p>
+                <span class="badge">소닉플로우 연구소</span>
+                <h1>🐍 2026년 미리보는<br>손금 신년운세</h1>
+                <p style="color:#666; line-height: 1.5;">손바닥에 그려진 미래 지도!<br>내년 나에게 대박 터질 운은?</p>
                 <div class="hand-icon">✋</div>
             </div>
-            <button class="start-btn" onclick="startTest()">내 손금 분석하기</button>
-            <p style="margin-top:15px; font-size:12px; color:#aaa;">지금까지 12,492명이 참여했습니다</p>
+            <button class="btn-base start-btn" onclick="startTest()">2026년 운세 확인하기</button>
+            <p style="margin-top:15px; font-size:12px; color:#aaa;">현재 12,492명이 내년 운세를 확인했습니다</p>
         </section>
 
         <section id="question-screen">
@@ -153,95 +182,126 @@
 
         <section id="loading-screen">
             <div class="loader"></div>
-            <h3 style="color:#4f46e5;">AI가 손금 패턴을 대조 중...</h3>
-            <p style="color:#888; font-size:14px;">약 3초 정도 소요됩니다.</p>
+            <h3 style="color:#4f46e5;">2026년 운명을 읽는 중...</h3>
+            <p style="color:#888; font-size:14px;">빅데이터로 내년 흐름을 분석합니다.</p>
         </section>
 
         <section id="result-screen">
-            <div class="result-header">
-                <span class="result-subtitle">분석 완료! 당신의 유형은</span>
-                <h2 id="result-title">결과 제목</h2>
-            </div>
+            
+            <div class="result-card pop-in">
+                <span class="result-subtitle">2026년 당신의 키워드는</span>
+                
+                <div class="result-visual">
+                    <img id="result-img" src="" alt="결과 이미지">
+                </div>
 
-            <div class="result-content">
+                <h2 id="result-title">결과 제목</h2>
                 <p id="result-desc">결과 설명...</p>
             </div>
 
             <div class="viral-box">
-                <h3>잠깐! ✋ 당신의 그 손에...</h3>
-                <p style="font-size: 15px; margin-bottom: 10px; font-weight: bold; color: #e91e63;">무거운 건 들지 마세요, 손금 망가져요!</p>
+                <h3>방금 펼쳐보신 그 손...✋</h3>
+                <p style="font-size: 16px; margin-bottom: 10px; font-weight: bold; color: #e91e63;">사이즈에 딱 맞는 추천템이 있어요!</p>
 
-                <div class="product-visual">
-                    <img src="https://placehold.co/600x400/ff4081/ffffff?text=SonicFlow+in+Hand" alt="손바닥 위 소닉플로우">
+                <div class="viral-visual">
+                    <img src="https://placehold.co/600x400/ff4081/ffffff?text=SonicFlow+In+Hand" alt="손바닥 위 소닉플로우">
                 </div>
 
                 <p class="viral-text">
-                    <strong>소닉플로우</strong>는 당신의 손바닥 안에<br>
-                    쏙 들어옵니다. (진짜 작죠?)
+                    방금 확인하신 그 <strong>손바닥 안에<br>
+                    쏙 들어오는 작고 가벼운 드라이기</strong><br>
+                    하나 추천해 드릴게요.<br>
+                    (스마트폰보다 작아요!)
                 </p>
 
-                <button class="buy-btn" onclick="window.open('https://brand.naver.com/oastore')">
-                    내 손보다 작은 드라이기 구경하기 👉
+                <button class="btn-base buy-btn" onclick="window.open('https://brand.naver.com/oastore')">
+                    내 손 사이즈에 딱 맞는 드라이기 보기 👉
                 </button>
             </div>
 
-            <div class="action-buttons">
-                <button class="retry-btn" onclick="location.reload()">🔄 다른 사람도 봐주기 (재시작)</button>
-            </div>
+            <button class="btn-base retry-btn" onclick="location.reload()">🔄 친구 신년운세도 봐주기</button>
         </section>
 
     </div>
 
     <script>
-        // --- 데이터 설정 ---
-        
+        // --- 데이터 설정 (질문 5개) ---
         const questions = [
             {
-                q: "Q1. 감정선(Heart Line)의 모양은?",
-                sub: "새끼손가락 아래에서 검지 쪽으로 뻗은 선을 보세요.",
+                q: "Q1. 2026년 당신의 감정선은?",
+                sub: "새끼손가락 아래, 감정선의 모양을 보세요.",
                 a: [
-                    { text: "검지까지 길게 뻗은 직선", score: 1, img: "https://placehold.co/100?text=Line+A" },
-                    { text: "중지 쪽에서 급격히 휘어짐", score: 2, img: "https://placehold.co/100?text=Line+B" }
+                    { text: "검지까지 시원하게 뻗음", score: 1, img: "https://placehold.co/100?text=A" },
+                    { text: "중간에서 급격히 휨", score: 2, img: "https://placehold.co/100?text=B" }
                 ]
             },
             {
-                q: "Q2. 두뇌선(Head Line)의 방향은?",
-                sub: "엄지와 검지 사이에서 시작해 가로지르는 선을 보세요.",
+                q: "Q2. 성공을 부르는 두뇌선은?",
+                sub: "엄지와 검지 사이, 두뇌선의 방향은?",
                 a: [
-                    { text: "직선으로 곧게 뻗음", score: 1, img: "https://placehold.co/100?text=Head+A" },
-                    { text: "아래로 완만하게 쳐짐", score: 2, img: "https://placehold.co/100?text=Head+B" }
+                    { text: "수평으로 곧게 직진!", score: 1, img: "https://placehold.co/100?text=A" },
+                    { text: "아래로 부드러운 곡선", score: 2, img: "https://placehold.co/100?text=B" }
                 ]
             },
             {
-                q: "Q3. 손바닥의 전체적인 두께는?",
-                sub: "손을 옆에서 봤을 때의 느낌을 골라주세요.",
+                q: "Q3. 건강을 책임질 생명선은?",
+                sub: "엄지 뿌리를 감싸는 생명선의 상태는?",
                 a: [
-                    { text: "도톰하고 폭신하다", score: 1, img: "https://placehold.co/100?text=Thick" },
-                    { text: "얇고 날렵하다", score: 2, img: "https://placehold.co/100?text=Thin" }
+                    { text: "굵고 진하게 손목까지", score: 1, img: "https://placehold.co/100?text=A" },
+                    { text: "중간에 연하거나 짧음", score: 2, img: "https://placehold.co/100?text=B" }
+                ]
+            },
+            {
+                q: "Q4. 대박을 암시하는 재물선은?",
+                sub: "약지(네 번째 손가락) 아래 세로선이 있나요?",
+                a: [
+                    { text: "선명한 선이 보인다!", score: 1, img: "https://placehold.co/100?text=A" },
+                    { text: "아직은 잘 안 보인다", score: 2, img: "https://placehold.co/100?text=B" }
+                ]
+            },
+            {
+                q: "Q5. 2026년을 맞이하는 손의 느낌?",
+                sub: "내 손을 쫙 폈을 때의 느낌은?",
+                a: [
+                    { text: "단단하고 야무진 느낌", score: 1, img: "https://placehold.co/100?text=A" },
+                    { text: "부드럽고 섬세한 느낌", score: 2, img: "https://placehold.co/100?text=B" }
                 ]
             }
         ];
 
+        // --- 2026년 신년운세 결과 ---
         const results = {
-            3: { 
-                title: "🔥 불꽃같은 직진러",
-                desc: "당신은 목표가 생기면 뒤도 안 돌아보고 달리는 스타일입니다. 열정이 넘치지만 그만큼 빨리 식을 수도 있네요. 현재의 열정을 유지한다면 큰 성과를 얻을 수 있습니다."
-            },
-            4: { 
-                title: "⚖️ 냉철한 전략가",
-                desc: "감정에 휘둘리지 않고 이성적으로 판단하는 능력이 뛰어납니다. 실수를 용납하지 않는 완벽주의 성향이 있어 주변의 신뢰를 받지만, 가끔은 스스로 피곤할 수 있습니다."
-            },
             5: { 
-                title: "🎨 감성 충만 아티스트",
-                desc: "남다른 미적 감각과 센스를 타고났습니다. 분위기와 기분에 따라 하루의 컨디션이 좌우되는 편이네요. 당신의 섬세함은 큰 무기가 됩니다."
+                title: "🔥 2026년: 압도적 성취운",
+                desc: "축하합니다! 내년 당신의 손금은 '직진'을 가리키고 있습니다. 2026년은 준비했던 모든 것이 결실을 맺는 수확의 해가 될 것입니다. 망설이지 말고 밀어붙이세요! 승진, 합격, 사업 확장 등 눈에 보이는 성과가 쏟아집니다.",
+                img: "https://placehold.co/600x400?text=Success+2026"
             },
             6: { 
-                title: "🕊️ 자유로운 영혼",
-                desc: "어딘가에 얽매이는 것을 싫어하고 새로운 것을 찾아다닙니다. 여행과 모험을 즐기는 당신! 창의적인 아이디어가 넘쳐납니다."
+                title: "💰 2026년: 똑똑한 재물운",
+                desc: "내년 당신의 머릿속 계산기가 빛을 발합니다! 냉철한 판단력으로 남들은 못 보는 기회를 잡게 되네요. 투자를 계획 중이라면 2026년이 골든타임! 통장 잔고가 두둑해지는 실속 있는 한 해가 예상됩니다.",
+                img: "https://placehold.co/600x400?text=Wealth+2026"
+            },
+            7: { 
+                title: "🤝 2026년: 귀인이 도울 인맥운",
+                desc: "2026년은 혼자가 아닙니다. 힘들 때마다 나를 끌어주는 '귀인'이 나타나는 형국이네요! 새로운 모임이나 만남을 두려워하지 마세요. 사람을 통해 엄청난 기회가 들어옵니다. 인맥이 곧 돈이 되는 해입니다.",
+                img: "https://placehold.co/600x400?text=Networking+2026"
+            },
+            8: { 
+                title: "💖 2026년: 핑크빛 로맨스운",
+                desc: "손금에서 감수성과 매력이 폭발하고 있습니다! 솔로라면 운명의 상대를, 커플이라면 더 깊은 결실을 맺을 2026년입니다. 사랑뿐만 아니라 예술적 영감도 뛰어나니, 창작 활동을 한다면 대박이 날 수도?!",
+                img: "https://placehold.co/600x400?text=Romance+2026"
+            },
+            9: { 
+                title: "✨ 2026년: 뜻밖의 반전 대박운",
+                desc: "예상치 못한 곳에서 행운이 터집니다! '이게 된다고?' 싶은 일이 실제로 일어나는 기적의 해입니다. 당신의 직감을 믿으세요. 로또나 경품 당첨 같은 횡재수도 살짝 엿보이네요. 운명에 몸을 맡겨보세요.",
+                img: "https://placehold.co/600x400?text=Jackpot+2026"
+            },
+            10: { 
+                title: "✈️ 2026년: 글로벌 역마살운",
+                desc: "2026년, 당신은 한곳에 머물 운명이 아닙니다! 해외여행, 유학, 이직, 이사 등 '이동'하면 할수록 운이 트입니다. 새로운 환경이 당신을 기다리고 있으니 짐을 싸세요. 넓은 세상이 당신의 무대입니다.",
+                img: "https://placehold.co/600x400?text=Travel+2026"
             }
         };
-        results[5] = { title: "💎 숨겨진 황금손", desc: "재물운과 명예운이 동시에 들어와 있습니다. 무엇을 만지든 평균 이상의 성과를 내는 능력이 있군요. 이 손을 아껴주세요!" };
-
 
         // --- 로직 ---
         let currentStep = 0;
@@ -256,21 +316,18 @@
         function showQuestion() {
             let percent = ((currentStep) / questions.length) * 100;
             document.getElementById('progress').style.width = percent + '%';
-
+            
             let q = questions[currentStep];
             document.getElementById('question-text').innerText = q.q;
             document.getElementById('sub-text').innerText = q.sub;
-
+            
             let optionsHtml = '';
             q.a.forEach((ans) => {
                 optionsHtml += `
                     <div class="option-card" onclick="nextQuestion(${ans.score})">
-                        <div class="img-wrapper">
-                            <img src="${ans.img}" alt="option">
-                        </div>
+                        <div class="img-wrapper"><img src="${ans.img}" alt="option"></div>
                         <p>${ans.text}</p>
-                    </div>
-                `;
+                    </div>`;
             });
             document.getElementById('options-box').innerHTML = optionsHtml;
         }
@@ -294,14 +351,15 @@
         function showResult() {
             document.getElementById('loading-screen').style.display = 'none';
             document.getElementById('result-screen').style.display = 'block';
-
+            
             let finalScore = totalScore;
-            if(finalScore < 3) finalScore = 3;
-            if(finalScore > 6) finalScore = 6;
+            if(finalScore < 5) finalScore = 5;
+            if(finalScore > 10) finalScore = 10;
 
             let resultData = results[finalScore];
             document.getElementById('result-title').innerText = resultData.title;
             document.getElementById('result-desc').innerText = resultData.desc;
+            document.getElementById('result-img').src = resultData.img;
         }
     </script>
 </body>
