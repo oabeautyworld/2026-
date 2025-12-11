@@ -42,16 +42,25 @@
         .pop-in { animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
         @keyframes popIn { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
 
-        /* 인트로 섹션 - 붉은 말 테마 강조 */
+        /* 인트로 섹션 */
         #start-screen { padding: 40px 20px; text-align: center; margin-top: 40px; }
-        .badge { background: #fee2e2; color: #b91c1c; padding: 5px 12px; border-radius: 20px; font-size: 13px; font-weight: bold; } /* 붉은색 배지 */
+        .badge { background: #fee2e2; color: #b91c1c; padding: 5px 12px; border-radius: 20px; font-size: 13px; font-weight: bold; }
         h1 { font-size: 28px; margin: 20px 0 10px; color: #111; line-height: 1.4; }
         
-        /* 붉은 말 아이콘 */
         .horse-icon { font-size: 80px; margin: 20px 0; animation: bounce 2s infinite; }
         @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
         
-        /* 이름 입력창 */
+        /* 안내 박스 (어느 손 볼지) */
+        .tip-box {
+            background: #fff8f8;
+            border: 1px dashed #dc2626;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 20px 0;
+            font-size: 14px;
+            color: #b91c1c;
+        }
+
         .input-group { margin-bottom: 20px; text-align: left; }
         .input-label { display: block; font-size: 14px; font-weight: bold; margin-bottom: 8px; color: #555; }
         .name-input {
@@ -63,9 +72,8 @@
             box-sizing: border-box;
             transition: 0.3s;
         }
-        .name-input:focus { border-color: #dc2626; outline: none; } /* 포커스시 레드 컬러 */
+        .name-input:focus { border-color: #dc2626; outline: none; }
 
-        /* 버튼 스타일 - 붉은 말 컨셉에 맞춰 레드 계열로 변경 */
         .btn-base {
             width: 100%;
             padding: 16px;
@@ -83,8 +91,8 @@
         #question-screen { display: none; padding: 20px; }
         .progress-container { width: 100%; background: #eee; height: 6px; border-radius: 10px; margin-bottom: 30px; }
         .progress-bar { height: 100%; background: #dc2626; width: 0%; transition: width 0.3s; border-radius: 10px; }
-        #question-text { font-size: 24px; text-align: center; margin-bottom: 15px; line-height: 1.3; }
-        .sub-text { text-align: center; color: #666; font-size: 15px; margin-bottom: 30px; line-height: 1.5; }
+        #question-text { font-size: 24px; text-align: center; margin-bottom: 10px; line-height: 1.3; }
+        .sub-text { text-align: center; color: #666; font-size: 15px; margin-bottom: 30px; line-height: 1.5; background: #f9f9f9; padding: 10px; border-radius: 8px; }
         
         .option-card {
             display: flex;
@@ -200,6 +208,12 @@
                 <div class="horse-icon">🐴🔥</div>
             </div>
 
+            <div class="tip-box">
+                ✋ <strong>잠깐! 어느 손을 보나요?</strong><br>
+                평소 밥을 먹거나 글씨를 쓰는<br>
+                <strong>'주로 사용하는 손'</strong>을 펴주세요.
+            </div>
+
             <div class="input-group">
                 <label class="input-label">이름을 알려주세요</label>
                 <input type="text" id="username" class="name-input" placeholder="예: 적토마 (입력 후 시작!)">
@@ -260,9 +274,9 @@
                     <img src="https://placehold.co/600x400/ff4081/ffffff?text=SonicFlow+In+Hand" alt="손바닥 위 소닉플로우">
                 </div>
                 <p class="viral-text">
-                    방금 확인하신 그 <strong>손바닥 안에<br>
-                    쏙 들어오는 작고 가벼운 드라이기</strong><br>
-                    하나 추천해 드릴게요.<br>(스마트폰보다 작아요!)
+                    <strong>생수보다 가벼운 280g!</strong><br>
+                    <strong>핸드폰만한 컴팩트 사이즈</strong>로<br>
+                    당신의 손목을 가볍게 지켜드립니다.
                 </p>
                 <button class="btn-base buy-btn" onclick="window.open('https://mkt.shopping.naver.com/link/690077e1db0ddd370ee28a38?nt_source=test&nt_medium=social&nt_detail=오아_소닉플로우_테스트&nt_keyword=테스트')">
                     내 손 사이즈에 딱 맞는 드라이기 보기 👉
@@ -275,10 +289,11 @@
     </div>
 
     <script>
+        // --- 데이터 (질문 설명 쉽게 수정됨) ---
         const questions = [
             {
                 q: "Q1. 2026년 당신의 감정선은?",
-                sub: "새끼손가락 아래, 감정선의 모양을 보세요.",
+                sub: "새끼손가락 아래에서 시작해 검지 쪽으로 가는 '가장 위쪽 선'을 보세요.",
                 a: [
                     { text: "A. 검지까지 시원하게 뻗은 직선", score: 1, img: "https://placehold.co/100?text=A" },
                     { text: "B. 중간에서 급격히 휘어지는 곡선", score: 2, img: "https://placehold.co/100?text=B" }
@@ -286,7 +301,7 @@
             },
             {
                 q: "Q2. 성공을 부르는 두뇌선은?",
-                sub: "엄지와 검지 사이, 두뇌선의 방향은?",
+                sub: "엄지와 검지 사이에서 시작해 손바닥을 가로지르는 '가운데 선'을 보세요.",
                 a: [
                     { text: "수평으로 곧게 직진!", score: 1, img: "https://placehold.co/100?text=A" },
                     { text: "아래로 부드러운 곡선", score: 2, img: "https://placehold.co/100?text=B" }
@@ -294,7 +309,7 @@
             },
             {
                 q: "Q3. 건강을 책임질 생명선은?",
-                sub: "엄지 뿌리를 감싸는 생명선의 상태는?",
+                sub: "엄지손가락 뿌리를 둥글게 감싸고 내려가는 '가장 아래쪽 선'을 보세요.",
                 a: [
                     { text: "굵고 진하게 손목까지", score: 1, img: "https://placehold.co/100?text=A" },
                     { text: "중간에 연하거나 짧음", score: 2, img: "https://placehold.co/100?text=B" }
@@ -302,7 +317,7 @@
             },
             {
                 q: "Q4. 대박을 암시하는 재물선은?",
-                sub: "약지(네 번째 손가락) 아래 세로선이 있나요?",
+                sub: "약지(네 번째 손가락) 바로 아래에 있는 세로선이 있나요?",
                 a: [
                     { text: "선명한 선이 보인다!", score: 1, img: "https://placehold.co/100?text=A" },
                     { text: "아직은 잘 안 보인다", score: 2, img: "https://placehold.co/100?text=B" }
@@ -310,7 +325,7 @@
             },
             {
                 q: "Q5. 2026년을 맞이하는 손의 느낌?",
-                sub: "내 손을 쫙 폈을 때의 느낌은?",
+                sub: "내 손을 쫙 폈을 때 전체적인 느낌은 어떤가요?",
                 a: [
                     { text: "단단하고 야무진 느낌", score: 1, img: "https://placehold.co/100?text=A" },
                     { text: "부드럽고 섬세한 느낌", score: 2, img: "https://placehold.co/100?text=B" }
@@ -356,7 +371,6 @@
             startOfDay.setHours(0,0,0,0);
             const minutesPassed = Math.floor((now - startOfDay.getTime()) / (1000 * 60));
             
-            // 붉은말 기운 받은 참여자 수 시뮬레이션
             const baseCount = 12492; 
             let currentCount = baseCount + (minutesPassed * 2);
 
