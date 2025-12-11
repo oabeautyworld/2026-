@@ -42,4 +42,369 @@
         .badge { background: #e0e7ff; color: #4338ca; padding: 5px 12px; border-radius: 20px; font-size: 13px; font-weight: bold; }
         h1 { font-size: 28px; margin: 20px 0 10px; color: #111; line-height: 1.3; }
         .hand-icon { font-size: 100px; margin: 40px 0; animation: float 3s ease-in-out infinite; }
-        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 1
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
+        
+        .btn-base {
+            width: 100%;
+            padding: 16px;
+            border-radius: 12px;
+            border: none;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-bottom: 10px;
+        }
+        .start-btn { background: #4f46e5; color: white; box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4); }
+        .start-btn:hover { background: #4338ca; }
+
+        /* 2. 질문 화면 */
+        #question-screen { display: none; padding: 20px; }
+        .progress-container { width: 100%; background: #eee; height: 6px; border-radius: 10px; margin-bottom: 30px; }
+        .progress-bar { height: 100%; background: #4f46e5; width: 0%; transition: width 0.3s; border-radius: 10px; }
+        #question-text { font-size: 22px; text-align: center; margin-bottom: 10px; }
+        .sub-text { text-align: center; color: #666; font-size: 14px; margin-bottom: 30px; }
+        
+        .option-card {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            box-sizing: border-box;
+            background: white;
+            border: 2px solid #eee;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .option-card:hover { border-color: #4f46e5; background: #eef2ff; }
+        .img-wrapper { width: 60px; height: 60px; background: #ddd; border-radius: 10px; margin-right: 15px; overflow: hidden; flex-shrink: 0; }
+        .img-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+        .option-card p { font-size: 16px; font-weight: 600; margin: 0; text-align: left; }
+
+        /* 3. 로딩 화면 */
+        #loading-screen { display: none; text-align: center; padding-top: 150px; }
+        .loader {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #4f46e5;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* 4. 결과 화면 */
+        #result-screen { display: none; padding: 40px 20px; background: linear-gradient(180deg, #fff 0%, #f8f9fa 100%); }
+        
+        .result-card {
+            background: white;
+            border: 2px solid #4f46e5;
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.15);
+            margin-bottom: 40px;
+        }
+        .result-subtitle { 
+            display: inline-block;
+            background: #eef2ff; 
+            color: #4f46e5; 
+            font-weight: bold; 
+            padding: 6px 15px; 
+            border-radius: 20px; 
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        
+        .result-visual {
+            width: 100%;
+            height: 220px;
+            background: #f0f0f0;
+            border-radius: 15px;
+            margin: 15px 0 20px;
+            overflow: hidden;
+            border: 1px solid #eee;
+        }
+        .result-visual img { width: 100%; height: 100%; object-fit: cover; }
+
+        #result-title { font-size: 26px; margin: 0 0 15px; color: #222; letter-spacing: -0.5px; word-break: keep-all; }
+        #result-desc { font-size: 16px; line-height: 1.6; color: #555; word-break: keep-all; }
+
+        /* 광고 박스 */
+        .viral-box {
+            background-color: #fff0f6;
+            border: 2px solid #fbcfe8;
+            border-radius: 15px;
+            padding: 25px 20px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .viral-box h3 { margin: 10px 0; font-size: 20px; color: #111; }
+        .viral-visual { margin: 20px 0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .viral-visual img { width: 100%; display: block; }
+        .viral-text { font-size: 15px; color: #444; margin-bottom: 20px; line-height: 1.5; word-break: keep-all; }
+        
+        .buy-btn { background: #ff4081; color: white; box-shadow: 0 4px 10px rgba(255, 64, 129, 0.3); }
+        .buy-btn:hover { background: #e91e63; }
+        .share-btn { background: #FEE500; color: #3b1e1e; box-shadow: 0 4px 10px rgba(254, 229, 0, 0.4); }
+        .share-btn:hover { background: #fadd2d; }
+        .retry-btn { background: white; border: 1px solid #ddd; color: #666; font-size: 14px; }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <section id="start-screen">
+            <div class="intro-box">
+                <span class="badge">소닉플로우 연구소</span>
+                <h1>🐍 2026년 미리보는<br>손금 신년운세</h1>
+                <p style="color:#666; line-height: 1.5;">빅데이터가 분석하는 10가지 운명<br>내년 나에게 대박 터질 운은?</p>
+                <div class="hand-icon">✋</div>
+            </div>
+            <button class="btn-base start-btn" onclick="startTest()">2026년 운세 확인하기</button>
+            <p style="margin-top:15px; font-size:12px; color:#aaa;">현재 12,492명이 참여했습니다</p>
+        </section>
+
+        <section id="question-screen">
+            <div class="progress-container"><div class="progress-bar" id="progress"></div></div>
+            <h2 id="question-text" class="fade-in">질문</h2>
+            <p id="sub-text" class="sub-text fade-in">설명</p>
+            <div class="options-container fade-in" id="options-box"></div>
+        </section>
+
+        <section id="loading-screen">
+            <div class="loader"></div>
+            <h3 style="color:#4f46e5;">2026년 운명을 읽는 중...</h3>
+            <p style="color:#888; font-size:14px;">당신의 손금 패턴을 분석합니다.</p>
+        </section>
+
+        <section id="result-screen">
+            <div class="result-card pop-in">
+                <span class="result-subtitle">2026년 당신의 키워드는</span>
+                <div class="result-visual">
+                    <img id="result-img" src="" alt="결과 이미지">
+                </div>
+                <h2 id="result-title">결과 제목</h2>
+                <p id="result-desc">결과 설명...</p>
+            </div>
+
+            <div class="viral-box">
+                <h3>방금 펼쳐보신 그 손...✋</h3>
+                <p style="font-size: 16px; margin-bottom: 10px; font-weight: bold; color: #e91e63;">사이즈에 딱 맞는 추천템이 있어요!</p>
+                <div class="viral-visual">
+                    <img src="https://placehold.co/600x400/ff4081/ffffff?text=SonicFlow+In+Hand" alt="손바닥 위 소닉플로우">
+                </div>
+                <p class="viral-text">
+                    방금 확인하신 그 <strong>손바닥 안에<br>
+                    쏙 들어오는 작고 가벼운 드라이기</strong><br>
+                    하나 추천해 드릴게요.<br>(스마트폰보다 작아요!)
+                </p>
+                <button class="btn-base buy-btn" onclick="window.open('https://brand.naver.com/oastore')">
+                    내 손 사이즈에 딱 맞는 드라이기 보기 👉
+                </button>
+            </div>
+
+            <button class="btn-base share-btn" onclick="shareResult()">💬 카카오톡 / 친구에게 공유하기</button>
+            <button class="btn-base retry-btn" onclick="location.reload()">🔄 다시 테스트하기</button>
+        </section>
+    </div>
+
+    <script>
+        // A=1점, B=2점
+        const questions = [
+            {
+                q: "Q1. 2026년 당신의 감정선은?",
+                sub: "새끼손가락 아래, 감정선의 모양을 보세요. (가장 중요!)",
+                a: [
+                    { text: "A. 검지까지 시원하게 뻗은 직선", score: 1, img: "https://placehold.co/100?text=A" },
+                    { text: "B. 중간에서 급격히 휘어지는 곡선", score: 2, img: "https://placehold.co/100?text=B" }
+                ]
+            },
+            {
+                q: "Q2. 성공을 부르는 두뇌선은?",
+                sub: "엄지와 검지 사이, 두뇌선의 방향은?",
+                a: [
+                    { text: "수평으로 곧게 직진!", score: 1, img: "https://placehold.co/100?text=A" },
+                    { text: "아래로 부드러운 곡선", score: 2, img: "https://placehold.co/100?text=B" }
+                ]
+            },
+            {
+                q: "Q3. 건강을 책임질 생명선은?",
+                sub: "엄지 뿌리를 감싸는 생명선의 상태는?",
+                a: [
+                    { text: "굵고 진하게 손목까지", score: 1, img: "https://placehold.co/100?text=A" },
+                    { text: "중간에 연하거나 짧음", score: 2, img: "https://placehold.co/100?text=B" }
+                ]
+            },
+            {
+                q: "Q4. 대박을 암시하는 재물선은?",
+                sub: "약지(네 번째 손가락) 아래 세로선이 있나요?",
+                a: [
+                    { text: "선명한 선이 보인다!", score: 1, img: "https://placehold.co/100?text=A" },
+                    { text: "아직은 잘 안 보인다", score: 2, img: "https://placehold.co/100?text=B" }
+                ]
+            },
+            {
+                q: "Q5. 2026년을 맞이하는 손의 느낌?",
+                sub: "내 손을 쫙 폈을 때의 느낌은?",
+                a: [
+                    { text: "단단하고 야무진 느낌", score: 1, img: "https://placehold.co/100?text=A" },
+                    { text: "부드럽고 섬세한 느낌", score: 2, img: "https://placehold.co/100?text=B" }
+                ]
+            }
+        ];
+
+        // --- 10가지 결과 데이터 (점수 + 1번질문 조합) ---
+        const results = {
+            // 5점 (All A)
+            "5": { 
+                title: "👑 2026년: 절대권력 제왕운",
+                desc: "천하를 호령할 기세! 망설임 없는 직선형 손금들이 모여 강력한 에너지를 만듭니다. 승진, 합격, 사업 확장 등 무엇이든 '내가 대장'이 되어야 직성이 풀리는 한 해가 될 것입니다.",
+                img: "https://placehold.co/600x400?text=King+2026"
+            },
+            // 6점 (4A + 1B) -> 감정선(Q1)에 따라 분기
+            "6-A": { 
+                title: "🔥 2026년: 열정의 불도저",
+                desc: "이성적이고 논리적인 판단력에 강력한 추진력까지! 당신은 브레이크 없는 스포츠카입니다. 목표가 생기면 무조건 달성하는 성취의 해가 됩니다.",
+                img: "https://placehold.co/600x400?text=Bulldozer"
+            },
+            "6-B": { 
+                title: "🦊 2026년: 냉철한 승부사",
+                desc: "감수성은 풍부하지만, 일할 때는 누구보다 냉정하군요. 겉은 부드럽지만 속은 단단한 '외유내강' 스타일로 실속을 챙기는 한 해입니다.",
+                img: "https://placehold.co/600x400?text=Fox"
+            },
+            // 7점 (3A + 2B)
+            "7-A": { 
+                title: "🌟 2026년: 인기만점 슈퍼스타",
+                desc: "사람들이 당신 주변으로 모여듭니다. 인맥이 곧 돈이 되고 기회가 되는 해! 영업, 마케팅, 모임 등 사람을 만나는 곳에서 대박이 터집니다.",
+                img: "https://placehold.co/600x400?text=Superstar"
+            },
+            "7-B": { 
+                title: "🧠 2026년: 천재적 전략가",
+                desc: "감정과 이성의 황금 밸런스! 남들이 보지 못하는 틈새시장을 발견하는 눈을 가졌습니다. 투자나 재테크에서 큰 성과를 거둘 수 있습니다.",
+                img: "https://placehold.co/600x400?text=Strategy"
+            },
+            // 8점 (2A + 3B)
+            "8-A": { 
+                title: "🎨 2026년: 감성 장인",
+                desc: "당신만의 독특한 감각이 빛을 발합니다. 남들과 똑같은 건 질색! 창의적인 아이디어로 인정받고, 그게 곧 수익으로 연결되는 '예술가적 성공'이 보입니다.",
+                img: "https://placehold.co/600x400?text=Artist"
+            },
+            "8-B": { 
+                title: "⚖️ 2026년: 평화로운 귀족",
+                desc: "무리하지 않아도 성과가 따라오는 '운수 대통'의 흐름입니다. 치열한 경쟁보다는 여유롭고 안정적인 행복을 누리게 됩니다. (부러워요!)",
+                img: "https://placehold.co/600x400?text=Noble"
+            },
+            // 9점 (1A + 4B)
+            "9-A": { 
+                title: "🔮 2026년: 직관의 마법사",
+                desc: "논리로는 설명할 수 없는 '촉'이 발동합니다. 찍으면 정답이고, 사면 오르는 신기한 경험을 할 수 있습니다. 당신의 육감을 믿으세요.",
+                img: "https://placehold.co/600x400?text=Magic"
+            },
+            "9-B": { 
+                title: "🦉 2026년: 신비로운 현자",
+                desc: "깊은 지혜와 통찰력을 가졌습니다. 주변 사람들이 당신에게 조언을 구하러 오겠군요. 멘토로서 명예가 올라가고 존경받는 한 해가 됩니다.",
+                img: "https://placehold.co/600x400?text=Sage"
+            },
+            // 10점 (All B)
+            "10": { 
+                title: "🕊️ 2026년: 자유로운 영혼",
+                desc: "어디에도 얽매이지 않는 바람 같은 운세! 해외 이동, 이사, 여행 등 역마살이 발동할수록 운이 트입니다. 넓은 세상이 당신의 무대입니다.",
+                img: "https://placehold.co/600x400?text=Freedom"
+            }
+        };
+
+        // --- 로직 ---
+        let currentStep = 0;
+        let totalScore = 0;
+        let answerHistory = []; // 선택한 답변 기록 (1 또는 2)
+
+        function startTest() {
+            document.getElementById('start-screen').style.display = 'none';
+            document.getElementById('question-screen').style.display = 'block';
+            showQuestion();
+        }
+
+        function showQuestion() {
+            let percent = ((currentStep) / questions.length) * 100;
+            document.getElementById('progress').style.width = percent + '%';
+            
+            let q = questions[currentStep];
+            document.getElementById('question-text').innerText = q.q;
+            document.getElementById('sub-text').innerText = q.sub;
+            
+            let optionsHtml = '';
+            q.a.forEach((ans) => {
+                optionsHtml += `
+                    <div class="option-card" onclick="nextQuestion(${ans.score})">
+                        <div class="img-wrapper"><img src="${ans.img}" alt="option"></div>
+                        <p>${ans.text}</p>
+                    </div>`;
+            });
+            document.getElementById('options-box').innerHTML = optionsHtml;
+        }
+
+        function nextQuestion(score) {
+            totalScore += score;
+            answerHistory.push(score); // 기록 저장
+            currentStep++;
+            if (currentStep < questions.length) {
+                showQuestion();
+            } else {
+                showLoading();
+            }
+        }
+
+        function showLoading() {
+            document.getElementById('question-screen').style.display = 'none';
+            document.getElementById('loading-screen').style.display = 'block';
+            setTimeout(() => { showResult(); }, 2500);
+        }
+
+        function showResult() {
+            document.getElementById('loading-screen').style.display = 'none';
+            document.getElementById('result-screen').style.display = 'block';
+            
+            // 결과 키 생성 로직 (10가지 경우의 수)
+            let resultKey = "";
+            
+            if (totalScore === 5) {
+                resultKey = "5"; // 올 A
+            } else if (totalScore === 10) {
+                resultKey = "10"; // 올 B
+            } else {
+                // 중간 점수(6,7,8,9)는 1번 질문(감정선)이 A(1)냐 B(2)냐로 나눔
+                let firstAnswer = answerHistory[0]; // 1 or 2
+                let type = (firstAnswer === 1) ? "A" : "B";
+                resultKey = totalScore + "-" + type;
+            }
+
+            // 예외 처리 (혹시 키가 없으면 기본값)
+            if (!results[resultKey]) resultKey = "7-A";
+
+            let resultData = results[resultKey];
+            document.getElementById('result-title').innerText = resultData.title;
+            document.getElementById('result-desc').innerText = resultData.desc;
+            document.getElementById('result-img').src = resultData.img;
+        }
+
+        function shareResult() {
+            const shareData = {
+                title: '2026년 손금 신년운세',
+                text: '내 손금으로 보는 2026년 운세는? 소름돋는 결과 확인하기 👇',
+                url: window.location.href
+            };
+            if (navigator.share) {
+                navigator.share(shareData);
+            } else {
+                navigator.clipboard.writeText(window.location.href)
+                    .then(() => alert("링크 복사 완료! 카톡방에 붙여넣기 하세요."));
+            }
+        }
+    </script>
+</body>
+</html>
