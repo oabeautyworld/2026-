@@ -1,76 +1,203 @@
-<header style="background-color: #f8f9fa; padding: 40px 20px; text-align: center; border-bottom: 1px solid #ddd;">
-    <h1 style="color: #6a1b9a; margin: 0;">✨ 2025 AI 정밀 손금 분석</h1>
-    <p style="color: #555; margin-top: 10px;">빅데이터 기반으로 당신의 연애운, 재물운, 생명선을 완벽하게 분석합니다.</p>
-    <span style="background: #e1bee7; color: #4a148c; padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: bold;">참여자 수: 1,204,592명</span>
-</header>
-
-<div style="max-width: 600px; margin: 0 auto; padding: 20px;">
-
-    <section style="margin-bottom: 50px;">
-        <h2 style="border-left: 5px solid #6a1b9a; padding-left: 10px;">🖐 1단계: 감정선(Heart Line) 확인</h2>
-        <p style="color: #666; font-size: 14px;">새끼손가락 아래에서 시작해 검지 쪽으로 뻗어 나가는 선을 확인해주세요.</p>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025 AI 손금 분석 & 행운 처방</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            min-height: 100vh;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+        }
+        /* 헤더 스타일 */
+        header {
+            background: linear-gradient(135deg, #6a1b9a, #8e24aa);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        h1 { margin: 0; font-size: 24px; }
+        .subtitle { font-size: 14px; opacity: 0.9; margin-top: 10px; }
         
-        <div style="border: 1px solid #ddd; padding: 15px; border-radius: 10px; margin-bottom: 10px; cursor: pointer; display: flex; align-items: center;">
-            <div style="font-size: 24px; margin-right: 15px;">📏</div>
-            <div>
-                <strong>A. 검지 아래까지 길게 뻗은 직선</strong>
-                <p style="margin: 5px 0 0; font-size: 13px; color: #888;">사랑에 있어 솔직하고 직진하는 스타일</p>
+        /* 섹션 공통 */
+        .section { padding: 30px 20px; }
+        
+        /* 결과 카드 스타일 */
+        .result-card {
+            background-color: #f3e5f5;
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            margin-bottom: 30px;
+            border: 2px solid #e1bee7;
+        }
+        .result-type {
+            color: #4a148c;
+            font-weight: bold;
+            font-size: 18px;
+            display: inline-block;
+            background: #fff;
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+        }
+        .chart-box {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-size: 13px;
+            color: #666;
+            text-align: left;
+        }
+
+        /* 광고(제품) 섹션 스타일 */
+        .ad-section {
+            background-color: #fff;
+            border-top: 10px solid #f5f5f5;
+        }
+        .product-card {
+            border: 1px solid #eee;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        .product-header {
+            background-color: #000;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-size: 14px;
+        }
+        .product-body { padding: 25px; text-align: center; }
+        
+        /* 이미지 플레이스홀더 */
+        .img-placeholder {
+            width: 100%;
+            height: 250px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: #888;
+            font-size: 12px;
+            flex-direction: column;
+        }
+
+        /* 버튼 스타일 */
+        .cta-button {
+            display: block;
+            width: 100%;
+            padding: 18px 0;
+            background: linear-gradient(90deg, #222, #444);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+        }
+        .cta-button:active { transform: scale(0.98); }
+        .tag-badge {
+            background-color: #ffeb3b;
+            color: #333;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 4px;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>✨ AI 손금 분석 결과</h1>
+        <p class="subtitle">빅데이터 120만 건 분석 완료<br>당신의 타고난 기질과 행운 처방전</p>
+    </header>
+
+    <div class="section">
+        <h2 style="text-align: center; margin-bottom: 20px;">🖐 당신의 손금 타입은?</h2>
+        
+        <div class="result-card">
+            <span class="result-type">TYPE: 숨 가쁜 완벽주의자</span>
+            <h3 style="margin: 10px 0; font-size: 24px;">"시간이 곧 돈이다!"</h3>
+            <p style="margin-bottom: 0;">
+                두뇌선이 직선으로 뻗은 당신은 <strong>효율성을 극도로 중시</strong>하는 타입입니다. 
+                남들보다 빠르게 성과를 내지만, 그만큼 아침마다 1분 1초가 소중한 사람이군요.
+            </p>
+            
+            <div class="chart-box">
+                <p><strong>⚠️ 주의할 점:</strong><br>생명선 끝이 살짝 흐려져 있습니다. 이는 아침 피로도가 높다는 뜻! 당신에겐 <strong>준비 시간을 획기적으로 줄여줄 아이템</strong>이 필수입니다.</p>
             </div>
         </div>
-
-        <div style="border: 1px solid #ddd; padding: 15px; border-radius: 10px; margin-bottom: 10px; cursor: pointer; display: flex; align-items: center;">
-            <div style="font-size: 24px; margin-right: 15px;">↩️</div>
-            <div>
-                <strong>B. 중지 아래에서 급격히 휘어지는 곡선</strong>
-                <p style="margin: 5px 0 0; font-size: 13px; color: #888;">열정적이지만 금방 식을 수도 있는 타입</p>
-            </div>
-        </div>
-
-        <div style="border: 1px solid #ddd; padding: 15px; border-radius: 10px; margin-bottom: 10px; cursor: pointer; display: flex; align-items: center;">
-            <div style="font-size: 24px; margin-right: 15px;">⛓️</div>
-            <div>
-                <strong>C. 사슬 모양으로 꼬여있거나 끊긴 선</strong>
-                <p style="margin: 5px 0 0; font-size: 13px; color: #888;">감수성이 풍부하고 상처를 잘 받는 타입</p>
-            </div>
-        </div>
-    </section>
-
-    <hr style="border: 0; border-top: 1px dashed #ccc; margin: 40px 0;">
-
-    <section>
-        <h2 style="text-align: center;">📊 당신의 손금 분석 리포트</h2>
-        <div style="background-color: #f3e5f5; padding: 20px; border-radius: 15px; text-align: center; margin-bottom: 30px;">
-            <h3 style="color: #4a148c; margin-top: 0;">당신의 타입: "숨겨진 야망가"</h3>
-            <p style="line-height: 1.6;">겉으로는 평온해 보이지만, 내면에는 거대한 성공 욕망이 꿈틀거리고 있습니다.<br>특히 30대 중반 이후 <strong>재물운이 폭발적으로 상승</strong>할 손금입니다.</p>
-        </div>
-
-        <div style="margin-bottom: 20px;">
-            <h4 style="margin-bottom: 10px;">💖 연애운 (Love)</h4>
-            <div style="background: white; border: 1px solid #eee; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-                <p style="margin: 0;">감정선이 위로 향하고 있어 <strong>리드하는 연애</strong>를 선호합니다. 상대방에게 헌신적이지만, 그만큼의 보상을 바라기도 합니다. 올해 12월, 귀인이 나타날 확률이 높습니다.</p>
-            </div>
-        </div>
-
-        <div style="margin-bottom: 20px;">
-            <h4 style="margin-bottom: 10px;">💰 재물운 (Wealth)</h4>
-            <div style="background: white; border: 1px solid #eee; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-                <p style="margin: 0;">약지 아래 태양선이 뚜렷하게 보입니다. 이는 <strong>노력 이상의 결과</strong>를 얻을 수 있음을 암시합니다. 로또보다는 투자나 사업 쪽 운이 더 강합니다.</p>
-            </div>
-        </div>
-
-        <div style="margin-bottom: 20px;">
-            <h4 style="margin-bottom: 10px;">🎓 직업운 (Career)</h4>
-            <div style="background: white; border: 1px solid #eee; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-                <p style="margin: 0;">두뇌선이 월구(손바닥 바깥쪽)로 휘어지고 있습니다. 이는 <strong>창의적이고 예술적인 감각</strong>이 뛰어나다는 증거입니다. 반복적인 업무보다는 기획, 디자인, 마케팅 분야가 적합합니다.</p>
-            </div>
-        </div>
-    </section>
-
-    <div style="text-align: center; margin-top: 50px; margin-bottom: 50px;">
-        <button style="background-color: #6a1b9a; color: white; border: none; padding: 15px 40px; border-radius: 30px; font-size: 16px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-            내 손금 결과 공유하기 🔗
-        </button>
-        <p style="margin-top: 15px; color: #888; font-size: 12px;">* 본 결과는 AI 패턴 분석에 기반한 재미용 테스트입니다.</p>
     </div>
 
-</div>근데
+    <div class="section ad-section">
+        <div style="text-align: center; margin-bottom: 25px;">
+            <p style="color: #6a1b9a; font-weight: bold; margin-bottom: 5px;">🎁 당신을 위한 맞춤 행운템</p>
+            <h2 style="margin: 0; font-size: 22px;">바쁜 아침, 10분의 여유를 선물합니다</h2>
+        </div>
+
+        <div class="product-card">
+            <div class="product-header">
+                🏆 네이버 쇼핑 드라이기 부문 베스트
+            </div>
+            
+            <div class="product-body">
+                <div class="img-placeholder">
+                    <span style="font-size: 40px; margin-bottom: 10px;">🌪️</span>
+                    <span>[이미지 영역]</span>
+                    <span>오아 소닉플로우 제품 사진을 넣어주세요</span>
+                </div>
+
+                <h3 style="margin: 0; font-size: 20px;">오아 소닉플로우 BLDC 드라이기</h3>
+                <p style="color: #666; font-size: 14px; margin-top: 5px;">미용실 드라이기의 강력함을 집에서 그대로</p>
+
+                <hr style="border: 0; border-top: 1px dashed #ddd; margin: 20px 0;">
+
+                <ul style="text-align: left; padding-left: 20px; color: #444; font-size: 15px; list-style-type: none;">
+                    <li style="margin-bottom: 12px;">✅ <span class="tag-badge">속도</span> <strong>110,000 RPM 초고속 모터</strong><br><span style="font-size:12px; color:#888; padding-left: 22px;">긴 머리도 3분 컷! 출근 준비 시간 단축</span></li>
+                    <li style="margin-bottom: 12px;">✅ <span class="tag-badge">케어</span> <strong>4억 개 음이온 발생</strong><br><span style="font-size:12px; color:#888; padding-left: 22px;">정전기 없이 차분하고 윤기 나는 머릿결</span></li>
+                    <li>✅ <span class="tag-badge">스마트</span> <strong>지능형 안심 온풍</strong><br><span style="font-size:12px; color:#888; padding-left: 22px;">두피 화상 걱정 없는 최적의 온도 유지</span></li>
+                </ul>
+
+                <br>
+                
+                <a href="https://brand.naver.com/oastore" target="_blank" class="cta-button">
+                    👉 최저가 혜택 보러가기
+                </a>
+                <p style="font-size: 12px; color: #999; margin-top: 10px;">
+                    * 지그재그(ZIGZAG) X OA 특별 기획전 진행 중
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <footer style="text-align: center; padding: 40px 20px; background-color: #f9f9f9; color: #888; font-size: 12px;">
+        <p>Copyright © 2025 AI Palm Lab. All rights reserved.</p>
+        <p>본 결과는 재미를 위한 AI 분석 시뮬레이션입니다.</p>
+    </footer>
+
+</div>
+
+</body>
+</html>
