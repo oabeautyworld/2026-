@@ -320,7 +320,12 @@
                     <strong>핸드폰만한 컴팩트 사이즈</strong>로<br>
                     평점 4.9점! BLDC의 강력한 풍량을 느껴보세요!
                 </p>
-                <button class="btn-base buy-btn" onclick="window.open('https://mkt.shopping.naver.com/link/690077e1db0ddd370ee28a38?nt_source=test&nt_medium=social&nt_detail=오아_소닉플로우_테스트&nt_keyword=테스트')">
+               v<button class="btn-base buy-btn" onclick="
+    gtag('event', 'click_buy_product', {
+        'event_category': 'button',
+        'event_label': '소닉플로우_구매이동'
+    });
+    window.open('https://mkt.shopping.naver.com/link/690077e1db0ddd370ee28a38?nt_source=test&nt_medium=social&nt_detail=오아_소닉플로우_테스트&nt_keyword=테스트')">
                     내 손 사이즈에 딱 맞는 드라이기 보기 👉
                 </button>
             </div>
