@@ -484,11 +484,30 @@
             document.getElementById('lucky-time').innerText = times[Math.floor(Math.random() * times.length)];
         }
 
-        function shareResult() {
+ function shareResult() {
+            // 1. 먼저 보여줄 멘트 설정
             const shareText = "2026년 병오년(丙午年), 붉은 말의 기운이 담긴 내 운세는? 🐴🔥\n소름 돋는 손금 풀이 확인하기 👇";
             
+            // 2. 공유할 링크 설정
             const shareUrl = window.location.href;
-           
+            
+            // 3. 공유 기능 실행 (Web Share API)
+            if (navigator.share) {
+                navigator.share({
+                    title: '2026년 운세 결과',
+                    text: shareText, // 👈 여기가 'text'이므로 링크보다 먼저 뜹니다
+                    url: shareUrl,
+                })
+                .then(() => console.log('공유 성공'))
+                .catch((error) => console.log('공유 실패', error));
+            } else {
+                // 4. PC 등 공유 기능이 안 되는 환경에서는 '클립보드 복사'로 대체
+                // 여기서도 순서를 '글자 + 줄바꿈 + 링크'로 강제 지정합니다.
+                const fallbackText = shareText + "\n" + shareUrl;
+                
+                navigator.clipboard.writeText(fallbackText)
+                    .then(() => alert('결과 내용이 복사되었습니다. 원하는 곳에 붙여넣기 하세요!'))
+                    .catch(err => console.error('복사 실패', err));
             }
         }
     </script>
