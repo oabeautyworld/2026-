@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2026년 붉은 말 손금 운세</title>
     <meta property="og:title" content="2026년 붉은 말 손금 운세">
-    <meta property="og:description" content="병오년(丙午年) 붉은 말의 해, 내 손금에 숨겨진 대박 운세는?">
- <meta property="og:image" content="images/all.png">
-<meta property="og:image" content="https://oabeautyworld.github.io/2026-/images/all.png">
+    <meta property="og:description" content="2026년 병오년(丙午年), 붉은 말의 기운이 담긴 내 운세는? 소름 돋는 손금 풀이 확인하기">
+    <meta property="og:image" content="https://oabeautyworld.github.io/2026-/images/all.png">
     
     <style>
         /* --- 스타일 정의 --- */
@@ -43,38 +42,73 @@
         .pop-in { animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
         @keyframes popIn { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
 
-        /* 인트로 섹션 */
-        #start-screen { padding: 40px 20px; text-align: center; margin-top: 40px; }
-        .badge { background: #fee2e2; color: #b91c1c; padding: 5px 12px; border-radius: 20px; font-size: 13px; font-weight: bold; }
-        h1 { font-size: 28px; margin: 20px 0 10px; color: #111; line-height: 1.4; }
+        /* ★ 인트로 섹션 (레드 테마 적용) ★ */
+        #start-screen { 
+            padding: 60px 20px; 
+            text-align: center; 
+            background-color: #dc2626; /* 강렬한 레드 배경 */
+            color: white; /* 기본 글씨 흰색 */
+            min-height: 100vh; /* 화면 꽉 차게 */
+            box-sizing: border-box;
+        }
         
-        .horse-icon { font-size: 80px; margin: 20px 0; animation: bounce 2s infinite; }
+        /* 뱃지 스타일 변경 (흰색 배경 + 빨간 글씨) */
+        .badge { background: white; color: #dc2626; padding: 5px 12px; border-radius: 20px; font-size: 13px; font-weight: bold; display: inline-block; margin-bottom: 15px;}
+        
+        /* 제목 스타일 */
+        h1 { font-size: 28px; margin: 10px 0 15px; color: white; line-height: 1.4; }
+        .intro-desc { color: #fecaca; line-height: 1.5; font-size: 15px; } /* 연한 붉은색 텍스트 */
+        
+        .horse-icon { font-size: 80px; margin: 30px 0; animation: bounce 2s infinite; }
         @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
         
-        /* 안내 박스 */
+        /* 안내 박스 (투명한 흰색 박스로 변경) */
         .tip-box {
-            background: #fff8f8;
-            border: 1px dashed #dc2626;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 10px;
-            padding: 10px;
-            margin: 20px 0;
+            padding: 15px;
+            margin: 30px 0;
             font-size: 14px;
-            color: #b91c1c;
+            color: #fff;
+            text-align: left;
         }
+        .tip-box strong { color: #fef08a; } /* 노란색 강조 */
 
-        .input-group { margin-bottom: 20px; text-align: left; }
-        .input-label { display: block; font-size: 14px; font-weight: bold; margin-bottom: 8px; color: #555; }
+        .input-group { margin-bottom: 30px; text-align: left; }
+        .input-label { display: block; font-size: 14px; font-weight: bold; margin-bottom: 8px; color: #fff; }
         .name-input {
             width: 100%;
             padding: 15px;
             font-size: 16px;
-            border: 2px solid #ddd;
+            border: none;
             border-radius: 12px;
             box-sizing: border-box;
-            transition: 0.3s;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
         }
-        .name-input:focus { border-color: #dc2626; outline: none; }
+        .name-input:focus { outline: 3px solid #fca5a5; }
 
+        /* 시작 버튼 (흰색 배경 + 빨간 글씨) */
+        .start-btn { 
+            width: 100%;
+            padding: 18px;
+            border-radius: 12px;
+            border: none;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-bottom: 15px;
+            background: white; 
+            color: #dc2626; 
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
+        }
+        .start-btn:hover { background: #f9fafb; transform: translateY(-2px); }
+
+        #participant-count { font-weight: bold; color: #fef08a; } /* 노란색 숫자 */
+
+        /* --- 질문 & 결과 화면 공통 --- */
         .btn-base {
             width: 100%;
             padding: 16px;
@@ -86,13 +120,11 @@
             transition: 0.2s;
             margin-bottom: 10px;
         }
-        .start-btn { background: #dc2626; color: white; box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4); }
-        .start-btn:hover { background: #b91c1c; }
 
-        #question-screen { display: none; padding: 20px; }
+        #question-screen { display: none; padding: 20px; padding-top: 40px; }
         .progress-container { width: 100%; background: #eee; height: 6px; border-radius: 10px; margin-bottom: 30px; }
         .progress-bar { height: 100%; background: #dc2626; width: 0%; transition: width 0.3s; border-radius: 10px; }
-        #question-text { font-size: 24px; text-align: center; margin-bottom: 10px; line-height: 1.3; }
+        #question-text { font-size: 24px; text-align: center; margin-bottom: 10px; line-height: 1.3; color: #333; }
         .sub-text { text-align: center; color: #666; font-size: 15px; margin-bottom: 30px; line-height: 1.5; background: #f9f9f9; padding: 10px; border-radius: 8px; }
         
         .option-card {
@@ -109,9 +141,9 @@
             transition: 0.2s;
         }
         .option-card:hover { border-color: #dc2626; background: #fef2f2; }
-        .img-wrapper { width: 60px; height: 60px; background: #ddd; border-radius: 10px; margin-right: 15px; overflow: hidden; flex-shrink: 0; }
-        .img-wrapper img { width: 100%; height: 100%; object-fit: cover; }
-        .option-card p { font-size: 16px; font-weight: 600; margin: 0; text-align: left; line-height: 1.4; }
+        .img-wrapper { width: 60px; height: 60px; background: #f0f0f0; border-radius: 10px; margin-right: 15px; overflow: hidden; flex-shrink: 0; border: 1px solid #eee; }
+        .img-wrapper img { width: 100%; height: 100%; object-fit: contain; }
+        .option-card p { font-size: 16px; font-weight: 600; margin: 0; text-align: left; line-height: 1.4; color: #333; }
 
         #loading-screen { display: none; text-align: center; padding-top: 150px; }
         .loader {
@@ -195,7 +227,6 @@
         
         .retry-btn { background: white; border: 1px solid #ddd; color: #666; font-size: 14px; }
 
-        #participant-count { font-weight: bold; color: #dc2626; }
     </style>
 </head>
 <body>
@@ -205,7 +236,7 @@
             <div class="intro-box">
                 <span class="badge">2026 병오년(丙午年)</span>
                 <h1>🐴 붉은 말의 기운<br>손금 신년운세</h1>
-                <p style="color:#666; line-height: 1.5;">역동적인 불의 기운이 온다!<br>내 손금에 숨겨진 2026년 대박 운세</p>
+                <p class="intro-desc">역동적인 불의 기운이 온다!<br>내 손금에 숨겨진 2026년 대박 운세</p>
                 <div class="horse-icon">🐴🔥</div>
             </div>
 
@@ -220,9 +251,9 @@
                 <input type="text" id="username" class="name-input" placeholder="예: 적토마 (입력 후 시작!)">
             </div>
 
-            <button class="btn-base start-btn" onclick="startTest()">붉은 말 운세 확인하기</button>
+            <button class="start-btn" onclick="startTest()">붉은 말 운세 확인하기</button>
             
-            <p style="margin-top:15px; font-size:13px; color:#666;">
+            <p style="margin-top:15px; font-size:13px; color:#fca5a5;">
                 🔥 현재 <span id="participant-count">12,492</span>명이 기운을 받는 중
             </p>
         </section>
@@ -272,7 +303,7 @@
                 <h3>방금 펼쳐보신 그 손...✋</h3>
                 <p style="font-size: 16px; margin-bottom: 10px; font-weight: bold; color: #e91e63;">사이즈에 딱 맞는 추천템이 있어요!</p>
                 <div class="viral-visual">
-                    <img src="images/01.jpg" alt="손바닥 위 소닉플로우">
+                    <img src="images/viral_sonicflow.jpg" alt="손바닥 위 소닉플로우">
                 </div>
                 <p class="viral-text">
                     <strong>생수보다 가벼운 280g!</strong><br>
@@ -457,14 +488,7 @@
             const shareText = "2026년 병오년(丙午年), 붉은 말의 기운이 담긴 내 운세는? 🐴🔥\n소름 돋는 손금 풀이 확인하기 👇";
             
             const shareUrl = window.location.href;
-            const shareData = { title: '2026년 붉은 말 손금 운세', text: shareText, url: shareUrl };
-
-            if (navigator.share) {
-                navigator.share(shareData).then(() => console.log('공유 성공')).catch((error) => console.log('공유 실패', error));
-            } else {
-                navigator.clipboard.writeText(shareText + "\n" + shareUrl)
-                    .then(() => alert("링크가 복사되었습니다! 단톡방에 공유해서 대박 기운을 나누세요."))
-                    .catch(err => console.error('복사 실패', err));
+           
             }
         }
     </script>
