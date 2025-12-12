@@ -244,7 +244,7 @@
                 <span class="result-subtitle"><span id="res-name"></span>님의 2026년 키워드</span>
                 
                 <div class="result-visual">
-                    <img id="result-img" src="images/01.jpg" alt="결과 이미지">
+                    <img id="result-img" src="images/all.png" alt="결과 이미지">
                 </div>
 
                 <h2 id="result-title">결과 제목</h2>
@@ -271,12 +271,12 @@
                 <h3>방금 펼쳐보신 그 손...✋</h3>
                 <p style="font-size: 16px; margin-bottom: 10px; font-weight: bold; color: #e91e63;">사이즈에 딱 맞는 추천템이 있어요!</p>
                 <div class="viral-visual">
-                    <img src="images/01.jpg" alt="손바닥 위 소닉플로우">
+                    <img src="images/01.jpg" alt="손바닥 위 오아 소닉플로우드라이기">
                 </div>
                 <p class="viral-text">
                     <strong>생수보다 가벼운 280g!</strong><br>
                     <strong>핸드폰만한 컴팩트 사이즈</strong>로<br>
-                    당신의 손목을 가볍게 지켜드립니다.
+                    평점 4.9의 고객평점 BLDC 강력한풍량을 느껴보세요! 
                 </p>
                 <button class="btn-base buy-btn" onclick="window.open('https://mkt.shopping.naver.com/link/690077e1db0ddd370ee28a38?nt_source=test&nt_medium=social&nt_detail=오아_소닉플로우_테스트&nt_keyword=테스트')">
                     내 손 사이즈에 딱 맞는 드라이기 보기 👉
@@ -454,8 +454,10 @@
             document.getElementById('lucky-time').innerText = times[Math.floor(Math.random() * times.length)];
         }
 
-        function shareResult() {
-            const shareText = `${userName}님의 2026년 붉은 말 운세 결과는? 🐴\n소름 돋는 결과 확인하기 👇`;
+  function shareResult() {
+
+            const shareText = "2026년 병오년(丙午年), 붉은 말의 기운이 담긴 내 운세는? 🐴🔥\n소름 돋는 손금 풀이 확인하기 👇";
+            
             const shareUrl = window.location.href;
             const shareData = { title: '2026년 붉은 말 손금 운세', text: shareText, url: shareUrl };
 
@@ -463,8 +465,10 @@
                 navigator.share(shareData).then(() => console.log('공유 성공')).catch((error) => console.log('공유 실패', error));
             } else {
                 navigator.clipboard.writeText(shareText + "\n" + shareUrl)
-                    .then(() => alert("결과와 링크가 복사되었습니다! 카톡방에 붙여넣기 하세요."))
+                    .then(() => alert("링크가 복사되었습니다! 단톡방에 공유해서 대박 기운을 나누세요."))
                     .catch(err => console.error('복사 실패', err));
+            }
+        }
             }
         }
     </script>
